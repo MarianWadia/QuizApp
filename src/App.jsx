@@ -1,33 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { useState } from "react"
+import {questions} from "./data"
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [finished, setFinished] = useState(false);
+  const [score, setScore] = useState(0);
 
+  function handleOptionClick(optionPressed){
+    if(selectedOption) return;
+
+    if(optionPressed.id === currentQuestion.answerId){
+      setScore(score  + 1)
+    }
+    setSelectedOption(optionPressed);
+  }
+
+  function handleNextButton(){
+    if(!selectedOption) return;
+
+    if(currentQuestion.id === questions[questions.length -1 ].id){
+      setFinished(true);
+    }else{
+      const indexOfCurrentQuestion = questions.findIndex((question)=>{
+        return currentQuestion.id === question.id;
+      })
+      setCurrentQuestion(questions[indexOfCurrentQuestion+1]);
+      setSelectedOption(null);
+    }
+  }
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="quiz">
+        <div className="info">
+          <p className="class-counter">
+            Question No. {currentQuestion.id}
+            <span className="total">/{questions.length}</span>
+          </p>
+          <p className="question">
+            {currentQuestion.question}
+          </p>
+        </div>
+        <div className="options">
+          {currentQuestion.options.map(
+            (option,index)=>(
+              <button 
+                onClick={() => handleOptionClick(option)}
+                disabled= {selectedOption !== null}
+                className="option-btn"
+                key={index}
+              >
+                {option.id}-{option.text}
+              </button>
+            )
+            )}
+            <button
+              onClick={handleNextButton}
+              className="next"
+              disabled={!selectedOption}
+            >
+              {currentQuestion.id === questions[questions.length -1].id ? "Finish" : "Next"} 
+            </button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
