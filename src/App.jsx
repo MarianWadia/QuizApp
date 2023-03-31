@@ -47,7 +47,7 @@ function App() {
               onClick={retryClick}
               className = "retry-btn"
             >
-              Retry!
+              Retry..
             </button>
           </div>
         ):(

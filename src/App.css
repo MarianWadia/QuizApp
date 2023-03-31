@@ -66,6 +66,7 @@
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0, 0.2);
   width: 100px;
   text-align: center;
+  font-weight: bold;
 }
 
 .options button.next:disabled{
