@@ -18,7 +18,7 @@ To install and run this app on your local machine, follow these steps:
 2. Open your terminal and navigate to the root directory of the app.
 3. Run `npm install` to install the dependencies.
 4. Run `npm run dev` to start the app in development mode.
-5. Open your browser and navigate to `http://localhost:3000` to view the app.
+5. Open your browser and navigate to `http://localhost:5173` to view the app.
 
 ## Usage
 
