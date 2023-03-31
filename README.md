@@ -30,7 +30,7 @@ To use the app, follow these steps:
 1. On the home page, select a quiz topic to take.
 2. On the quiz page, answer the questions by selecting one of the multiple-choice options.
 3. Click the "Next" button to move to the next question.
-4. After answering all the questions, click the "Submit" button to see your score and review your answers.
+4. After answering all the questions, click the "Finish" button to see your score and review your answers.
 
 ## Features
 
