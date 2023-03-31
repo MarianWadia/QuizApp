@@ -28,39 +28,67 @@ function App() {
       setSelectedOption(null);
     }
   }
+
+  function retryClick(){
+    setCurrentQuestion(questions[0]);
+    setFinished(false);
+    setScore(0);
+    setSelectedOption(null);
+  }
   return (
     <div className="App">
       <div className="quiz">
-        <div className="info">
-          <p className="class-counter">
-            Question No. {currentQuestion.id}
-            <span className="total">/{questions.length}</span>
-          </p>
-          <p className="question">
-            {currentQuestion.question}
-          </p>
-        </div>
-        <div className="options">
-          {currentQuestion.options.map(
-            (option,index)=>(
-              <button 
-                onClick={() => handleOptionClick(option)}
-                disabled= {selectedOption !== null}
-                className="option-btn"
-                key={index}
-              >
-                {option.id}-{option.text}
-              </button>
-            )
-            )}
+        {finished ? (
+          <div className="end-screen">
+            <p className="finished">Finished!</p>
+            <p>Your Score is : {100 * (score / questions.length)}%</p>
             <button
-              onClick={handleNextButton}
-              className="next"
-              disabled={!selectedOption}
+              onClick={retryClick}
+              className = "retry-btn"
             >
-              {currentQuestion.id === questions[questions.length -1].id ? "Finish" : "Next"} 
+              Retry!
             </button>
-        </div>
+          </div>
+        ):(
+          <>
+            <div className="info">
+              <p className="class-counter">
+                Question No. {currentQuestion.id}
+                <span className="total">/{questions.length}</span>
+              </p>
+              <p className="question">
+                {currentQuestion.question}
+              </p>
+            </div>
+            <div className="options">
+              {currentQuestion.options.map(
+                (option,index)=>(
+                  <button 
+                    onClick={() => handleOptionClick(option)}
+                    disabled= {selectedOption !== null}
+                    className={`option ${
+                      option.id === selectedOption?.id ? 
+                      selectedOption?.id === currentQuestion.answerId ? 
+                      "correct": "incorrect"
+                      : ""
+                    }`
+                  }
+                    key={index}
+                  >
+                    {option.id}-{option.text}
+                  </button>
+                )
+                )}
+                <button
+                  onClick={handleNextButton}
+                  className="next"
+                  disabled={!selectedOption}
+                >
+                  {currentQuestion.id === questions[questions.length -1].id ? "Finish" : "Next"} 
+                </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   )
