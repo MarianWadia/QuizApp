@@ -2,7 +2,7 @@
 
 This is a quiz app built with React and Vite that allows users to take quizzes on various topics.
 
-<img src="https://media0.giphy.com/media/4nEX49exKktpOubjhI/giphy.gif?cid=ecf05e47uhf8m4u2xqbcv2swn1vpsrfajr2y9ra1aepwbzhu&rid=giphy.gif&ct=g" alt="Quiz App Demo" width="500">
+<img src="https://media0.giphy.com/media/4nEX49exKktpOubjhI/giphy.gif?cid=ecf05e47uhf8m4u2xqbcv2swn1vpsrfajr2y9ra1aepwbzhu&rid=giphy.gif&ct=g" alt="Quiz App Demo" width="800">
 
 
 ## Table of Contents
