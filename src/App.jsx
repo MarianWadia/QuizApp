@@ -1,5 +1,6 @@
 import { useState } from "react"
 import {questions} from "./data"
+import './App.css'
 function App() {
   const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -52,7 +53,7 @@ function App() {
         ):(
           <>
             <div className="info">
-              <p className="class-counter">
+              <p className="question-counter">
                 Question No. {currentQuestion.id}
                 <span className="total">/{questions.length}</span>
               </p>
@@ -71,11 +72,13 @@ function App() {
                       selectedOption?.id === currentQuestion.answerId ? 
                       "correct": "incorrect"
                       : ""
-                    }`
+                    } ${option.id === currentQuestion.answerId && selectedOption !== null ?
+                       "right-answer" : ""
+                      }`
                   }
                     key={index}
                   >
-                    {option.id}-{option.text}
+                    {option.id}. {option.text}
                   </button>
                 )
                 )}
